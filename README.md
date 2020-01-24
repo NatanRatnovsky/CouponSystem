@@ -1,7 +1,7 @@
 # Coupon System
 
 ``
-Aplication to manage coupon
+Aplication to manage coupons
 ``
 
 ## Under construction!
