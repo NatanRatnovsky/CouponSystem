@@ -1,0 +1,23 @@
+div{
+  margin: auto;
+  background-color: white;
+  height: 320px;
+  width: 610px;
+  padding: 5px;
+}
+
+.coupon{
+  margin: auto;
+  color: black;
+  border: dashed;
+  height: 300px;
+  width: 600px;
+  background-color: white;
+;
+
+}
+td{
+  padding-left: 10px;
+  width: 125px;
+  height: 100px;
+}

@@ -1,0 +1,21 @@
+section{
+  height: 100%;
+  margin: 0;
+  display: grid;/* create a grid */
+  grid-template-rows: 10% 85% 5%;
+  grid-template-columns: repeat(12,1fr);
+}
+section > *{
+}
+header{
+  grid-column: span 12;
+}
+aside{
+  grid-column: span 2;
+}
+main{
+  grid-column: span 8;
+}
+footer{
+  grid-column: span 12;
+}
