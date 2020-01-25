@@ -4,6 +4,7 @@ export class AccountCred {
     public password?: string,
     public clientType?: string,
     public id?: string,
+    public email?: string
   ) {
   }
 }

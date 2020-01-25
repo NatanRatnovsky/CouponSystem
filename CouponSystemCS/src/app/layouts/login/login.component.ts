@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     this.typeOfClient = localStorage.getItem('tokenClientType');
   }
   public Login() {
-    this.loginService.login(new AccountCred (this.name, this.password, null));
-    this.ngOnInit();
+    // this.loginService.login(new AccountCred (this.name, this.password, null));
+    // this.ngOnInit();
   }
 
 

@@ -21,5 +21,10 @@ td{
   width: 125px;
   height: 100px;
 }
+span {
+  font-family: 'Arial Black', serif;
+  font-style: italic;
+  font-size: 15px;
+}
 
 

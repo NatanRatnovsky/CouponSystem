@@ -2,6 +2,27 @@
 html,body {
   height: 100%;
   margin: 0;
-  color: azure;
+  font-size: 16px;
+  /*background-image: url("assets/img/cs.jpg");*/
+  background-color: #cccccc;
+}
+.mat-tab-label{
+  font-size: 24px !important;
 }
 
+.mat-cell {
+  font-size: 22px !important;
+}
+
+.mat-header-cell {
+  background-color: lightgrey;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,11 +1,17 @@
 @import "~@angular/material/theming";
 
+$custom-typography: mat-typography-config(
+  $font-family: 'Ubuntu, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(28px, 36px, 500)
+);
 @include mat-core();
-$my-theme-primary: mat-palette($mat-deep-purple);
-$my-theme-accent: mat-palette($mat-amber, A200, A100, A400);
+$my-theme-primary: mat-palette($mat-blue);
+$my-theme-accent: mat-palette($mat-blue-grey, A200, A100, A400);
 $my-theme-warn: mat-palette($mat-red);
 
-$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
-$custom-background-color: map_get($mat-blue-grey, 50);
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+$custom-background-color: map_get($mat-light-theme-background, 50);
 
 @include angular-material-theme($my-theme);
+

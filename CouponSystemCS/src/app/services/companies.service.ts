@@ -22,21 +22,24 @@ export class CompaniesService {
   }
 
   public getAllCompanies(): Observable<Company[]> {
-    return this.httpClient.get<Company[]>('http://localhost:8080/admin/companies');
+    if (localStorage.getItem('tokenClientType') === 'ADMIN') {
+      return this.httpClient.get<Company[]>('admin/companies');
+    } else {
+      return null;
+    }
   }
 
   public addCompany(comp: Company): Observable<Company> {
-    return this.httpClient.post<Company>('http://localhost:8080/admin/addCompany', comp);
+    return this.httpClient.post<Company>('admin/addCompany', comp);
   }
 
   public updateCompany(comp: Company): Observable<Company> {
-    return this.httpClient.put<Company>('http://localhost:8080/admin/updateCompany/', comp);
+    return this.httpClient.put<Company>('admin/updateCompany/', comp);
   }
 
   public deleteCompany(id: number) {
-    return this.httpClient.delete<Company>('http://localhost:8080/admin/deleteCompany/' + id,
+    return this.httpClient.delete<Company>('admin/deleteCompany/' + id,
       this.httpOptions);
   }
 }
-
 

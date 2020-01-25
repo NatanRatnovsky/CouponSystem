@@ -1,63 +1,47 @@
 <br/>
-<button mat-raised-button color="primary" (click)="toggleCompany()">{{addCompanyButtonValue}}</button>
+<mat-card>
+<button mat-raised-button (click)="openDialog('Add',{})" color="primary">Add Company</button>
 <br/>
-<br/>
-<form #addCompanyForm="ngForm" *ngIf="showCompany">
-  <mat-form-field>
-    <input matInput name="companyName" placeholder="Name" [(ngModel)]="company.name" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput name="password" placeholder="Password" [(ngModel)]="company.password" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput name="email" placeholder="E-mail" [(ngModel)]="company.email" required>
-  </mat-form-field>
-  <button mat-raised-button [disabled]="addCompanyForm.invalid" (click)="addCompanyFunc(); addCompanyForm.resetForm()" value="Add company">Submit
-  </button>
-</form>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
-
-<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let companies"> {{companies[column]}} </td>
+<div class="example-container">
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class=" mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID. </th>
+    <td mat-cell *matCellDef="let companies"> {{companies.id}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let companies"> {{companies.name}} </td>
+  </ng-container>
+  <!-- Name Password -->
+  <ng-container matColumnDef="password">
+    <th mat-header-cell *matHeaderCellDef> Password </th>
+    <td mat-cell *matCellDef="let companies"> {{companies.password}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let companies" [attr.colspan]="displayedColumns.length">
-      <div class="example-element-detail"
-           [@detailExpand]="companies == expandedElement ? 'expanded' : 'collapsed'">
+  <!-- Name Email -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> E-mail </th>
+    <td mat-cell *matCellDef="let companies"> {{companies.email}} </td>
+  </ng-container>
 
-        <div class="example-element-description">
-          <form #updateCompanyForm="ngForm">
-              <input matInput name="id" placeholder="ID" #updateID [(ngModel)]="companies.id" hidden>
-            <mat-form-field>
-              <input matInput name="companyName" placeholder="Name" [(ngModel)]="company.name" required >
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput name="password" placeholder="Password" [(ngModel)]="company.password" required>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput name="email" placeholder="E-mail" [(ngModel)]="company.email" required>
-            </mat-form-field>
-            <button mat-raised-button [disabled]="updateCompanyForm.invalid" (click)="updateCompany(updateID.value); updateCompanyForm.resetForm()" value="Update company">Update
-            </button>&nbsp;&nbsp;&nbsp;
-            <button mat-raised-button color="warn" (click)="deleteCompany(updateID.value)" value="Delete company">Delete</button>
-          </form>
-
-        </div>
-      </div>
+  <<!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element" class="action-link">
+      <a (click)="openDialog('Update',element)"><mat-icon color="primary">edit</mat-icon></a>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a (click)="openDialog('Delete',element)"><mat-icon color="warn">delete</mat-icon></a>
     </td>
   </ng-container>
 
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let companies; columns: displayedColumns;"
-      class="example-element-row"
-      [class.example-expanded-row]="expandedElement === companies"
-      (click)="expandedElement = expandedElement === companies ? null : companies">
+  <tr mat-row *matRowDef="let companies; columns: displayedColumns;">
   </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
+  </div>
+</mat-card>

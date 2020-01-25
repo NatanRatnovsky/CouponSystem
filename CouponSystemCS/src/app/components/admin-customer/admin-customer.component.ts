@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Customer} from '../../models/customer';
-import {MatTableDataSource} from '@angular/material';
+import {MatDialog, MatTable, MatTableDataSource} from '@angular/material';
 import {CustomerService} from '../../services/customer.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {DialogBoxAdminCustomerComponent} from '../dialog-box-admin-customer/dialog-box-admin-customer.component';
 
 @Component({
   selector: 'app-admin-customer',
@@ -20,28 +21,18 @@ export class AdminCustomerComponent implements OnInit {
 
   public customers: Customer[];
   public showCustomer = false;
-  displayedColumns: string[] = ['id', 'name', 'password', 'email'];
+  displayedColumns: string[] = ['id', 'name', 'password', 'email', 'action'];
   dataSource;
-  expandedElement: Customer | null;
   public customer: Customer = new Customer();
   public addCustomerButtonValue = 'Add Customer';
 
-  constructor(private customerService: CustomerService) {
+  @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+
+  constructor(private customerService: CustomerService, private dialog: MatDialog) {
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  public toggleCustomer(): void {
-    if (!this.showCustomer) {
-      this.showCustomer = true;
-      this.addCustomerButtonValue = 'Close';
-    } else {
-      this.showCustomer = false;
-      this.addCustomerButtonValue = 'Add Customer';
-    }
-
   }
 
   ngOnInit() {
@@ -52,16 +43,6 @@ export class AdminCustomerComponent implements OnInit {
       alert(error);
     });
 
-  }
-
-  public addCustomerFunc(): void {
-    this.customerService.addCustomer(this.customer).subscribe(c => {
-      console.log(this.customer);
-      this.ngOnInit();
-      this.toggleCustomer();
-    }, error => {
-      error(error.message);
-    });
   }
 
   public updateCustomer(updateID): void {
@@ -82,6 +63,24 @@ export class AdminCustomerComponent implements OnInit {
       });
 
     }
+  }
+  public openDialog(action, obj) {
+    console.log(obj);
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxAdminCustomerComponent, {
+      width: '450px',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event === 'Add') {
+        this.ngOnInit();
+      } else if (result.event === 'Update') {
+        this.ngOnInit();
+      } else if (result.event === 'Delete') {
+        this.ngOnInit();
+      }
+    });
   }
 
 }

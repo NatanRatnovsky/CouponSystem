@@ -11,7 +11,6 @@ export class CouponLogoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('coupon dummy imageSource:' + this.imageSource);
   }
 
 }

@@ -1,19 +1,56 @@
-<mat-toolbar>Company Page</mat-toolbar>
-
-<mat-tab-group>
-  <mat-tab label="Coupons">
+<mat-card>
+<mat-toolbar color="primary">Company Page</mat-toolbar>
     <br/>
 
-    <app-company-coupons></app-company-coupons>
+    <mat-card>
+      <button mat-raised-button color="primary" (click)="openDialog('Add',{})">Add Coupon</button>
+      <br/>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search"/>
+      </mat-form-field>
 
-  </mat-tab>
-  <mat-tab label="Add Coupon">
-    <br/>
-    <app-company-add-coupon></app-company-add-coupon>
+      <div class="example-container">
 
-  </mat-tab>
-  <mat-tab label="Update Coupon">
-    <br/>
-    <app-company-update-coupon></app-company-update-coupon>
-  </mat-tab>
-</mat-tab-group>
+        <table mat-table [dataSource]="dataSource"
+               multiTemplateDataRows class="mat-elevation-z8">
+
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let coupons" (click)="openCoupon('View',coupons)"> {{coupons.title}} </td>
+          </ng-container>
+
+          <!-- Name EndDate -->
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> Expire on </th>
+            <td mat-cell *matCellDef="let coupons" (click)="openCoupon('View',coupons)"> {{coupons.endDate}} </td>
+          </ng-container>
+
+          <!-- Name Title -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let coupons" (click)="openCoupon('View',coupons)"> {{coupons.type}} </td>
+          </ng-container>
+
+          <!-- Name Price -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let coupons" (click)="openCoupon('View',coupons)"> {{coupons.price}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Edit&nbsp;&nbsp;&nbsp;&nbsp;Delete </th>
+            <td mat-cell *matCellDef="let element" class="action-link">&nbsp;
+              <a (click)="openDialog('Update',element)"><mat-icon color="primary">edit</mat-icon></a>  &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a (click)="openDialog('Delete',element)"><mat-icon color="warn">delete</mat-icon></a>
+            </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let coupons; columns: displayedColumns;" >
+
+        </table>
+      </div>
+    </mat-card>
+</mat-card>

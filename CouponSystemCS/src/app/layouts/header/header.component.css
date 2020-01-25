@@ -1,4 +1,11 @@
-table{
-  width: 100%;
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+mat-toolbar {
+  position: fixed;
+  height: 80px;
+  z-index:999;
 }
 

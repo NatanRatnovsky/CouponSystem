@@ -10,7 +10,7 @@ import {CompanyComponent} from './components/company/company.component';
 const routes: Routes = [
   {path: 'home' , component: HomeComponent},
   {path: 'login' , component: LoginComponent},
-  {path: 'admin' , component: AdminComponent},
+  {path: 'dmn' , component: AdminComponent},
   {path: 'client', component: ClientComponent},
   {path: 'company', component: CompanyComponent},
   {path: ' ' , component: HomeComponent},

@@ -1,2 +1,27 @@
-<a routerLink="login" (click)="clearLocalStorage()">Login / Logout</a>
+<form #loginForm="ngForm">
+<span *ngIf="!loginName || loginName=='undefined' || loginName == null || loginName == 'null'" style="margin-right: 10px">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="E-mail" [(ngModel)]="name" name="name" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]="!loginForm.valid" (click)="login()">Login</button>
+</span>
+</form>
+<span *ngIf="loginName !== 'undefined' && loginName != 'null' && loginName != null">Hello {{loginName }}
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onLogout()">
+    <span class="span-menu">
+    Logout
+    <mat-icon color="primary">exit_to_app</mat-icon>
+    </span>
+  </button>
+</mat-menu> </span>
 

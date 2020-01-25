@@ -18,19 +18,19 @@ export class CustomerService {
   constructor( private httpClient: HttpClient) { }
 
   public getAllCustomers(): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>('http://localhost:8080/admin/allCustomers');
+    return this.httpClient.get<Customer[]>('admin/allCustomers');
   }
 
   public addCustomer(customer: Customer): Observable<Customer> {
-    return this.httpClient.post<Customer>('http://localhost:8080/admin/addCustomer', customer);
+    return this.httpClient.post<Customer>('admin/addCustomer', customer);
   }
 
   public updateCustomer(customer: Customer): Observable<Customer> {
-    return this.httpClient.put<Customer>('http://localhost:8080/admin/updateCustomer/', customer);
+    return this.httpClient.put<Customer>('admin/updateCustomer/', customer);
   }
 
   public deleteCustomer(id: number) {
-    return this.httpClient.delete<Customer>('http://localhost:8080/admin/deleteCustomer/' + id,
+    return this.httpClient.delete<Customer>('admin/deleteCustomer/' + id,
       this.httpOptions);
   }
 }

@@ -1,4 +1,8 @@
 img{
-  padding-left: 70px;
-  height: 100px;
+  text-align: center;
+  max-height: 130px;
+  background-color: white;
+  max-width: 160px;
+  margin: 5px;
+  padding: auto;
 }

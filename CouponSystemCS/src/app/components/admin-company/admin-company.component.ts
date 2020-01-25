@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Company} from '../../models/company';
 import {CompaniesService} from '../../services/companies.service';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatDialog} from '@angular/material';
+import {DialogBoxComponent} from '../dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-admin-company',
@@ -20,28 +22,18 @@ export class AdminCompanyComponent implements OnInit {
 
   public companies: Company[];
   public showCompany = false;
-  displayedColumns: string[] = ['id', 'name', 'password', 'email'];
+  displayedColumns: string[] = ['id', 'name', 'password', 'email', 'action'];
   dataSource;
-  expandedElement: Company | null;
   public company: Company = new Company();
   public addCompanyButtonValue = 'Add Company';
 
-  constructor(private companiesService: CompaniesService) {
+  @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+
+  constructor(private companiesService: CompaniesService, private dialog: MatDialog) {
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  public toggleCompany(): void {
-    if (!this.showCompany) {
-      this.showCompany = true;
-      this.addCompanyButtonValue = 'Close';
-    } else {
-      this.showCompany = false;
-      this.addCompanyButtonValue = 'Add Company';
-    }
-
   }
 
   ngOnInit() {
@@ -59,7 +51,6 @@ export class AdminCompanyComponent implements OnInit {
     this.companiesService.addCompany(this.company).subscribe(c => {
       console.log(this.company);
       this.ngOnInit();
-      this.toggleCompany();
     }, error1 => {
       error1(error1.message);
     });
@@ -84,4 +75,47 @@ export class AdminCompanyComponent implements OnInit {
 
     }
   }
+
+  public openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '450px',
+      data: obj,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event === 'Add') {
+        this.ngOnInit();
+      } else if (result.event === 'Update') {
+        this.ngOnInit();
+      } else if (result.event === 'Delete') {
+        this.ngOnInit();
+      }
+    });
+  }
+
+//   public addRowData(rowObj) {
+//     const d = new Date();
+//     this.dataSource.push({
+//       id: d.getTime(),
+//       name: rowObj.name
+//     });
+//     this.table.renderRows();
+//
+//   }
+//
+//   updateRowData(rowObj) {
+//     this.dataSource = this.dataSource.filter((value, key) => {
+//       if (value.id === rowObj.id) {
+//         value.name = rowObj.name;
+//       }
+//       return true;
+//     });
+//   }
+//
+//   deleteRowData(rowObj) {
+//     this.dataSource = this.dataSource.filter((value, key) => {
+//       return value.id !== rowObj.id;
+//     });
+//   }
 }

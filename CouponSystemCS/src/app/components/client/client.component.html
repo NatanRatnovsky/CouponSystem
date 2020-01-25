@@ -1,8 +1,72 @@
-<mat-toolbar>Client Page</mat-toolbar>
-<mat-tab-group>
-  <mat-tab label="Coupons On Sale"><app-coupons-for-sale></app-coupons-for-sale></mat-tab>
+<mat-card>
+  <mat-toolbar color="primary">Client Page</mat-toolbar>
+  <mat-tab-group>
+    <mat-tab label="Coupons On Sale">
+      <div *ngIf="coupons == null || coupons.length === 0" class="no-purchased-coupon">
+        No new coupon for You.
+      </div>
+      <div *ngFor="let coupon of coupons | paginate: { itemsPerPage: 4, currentPage: p }" class="coupons-table">
+        <table>
+          <tr>
+            <td class="coupon-logo">
+              <app-coupon-logo imageSource="{{coupon.image}}"></app-coupon-logo>
+            </td>
+            <td class="coupon-body">
+              <div class="coupon-header">
+                {{coupon.title}}
+              </div>
+              <div class="message">
+                "{{coupon.message}}"
+              </div>
+              <div style="text-align: center">
+                Ends:<span class="coupon-rows"> {{coupon.endDate}}</span>
+              </div>
+              <div style="text-align: center">
+                Price:<span class="coupon-rows"> {{coupon.price | currency}}</span>
+              </div>
+            </td>
+            <td class="coupon-buy">
+              <button type="button" class="btn btn-outline-success" style="width: 85px; height: 45px; font-weight: bold;
+                border-width: initial"
+              (click)="openCoupon('Buy', coupon)">Buy</button>
 
-  <mat-tab label="My Coupons"><app-customer-coupon></app-customer-coupon></mat-tab>
+            </td>
+          </tr>
+        </table>
+      </div> <pagination-controls *ngIf="coupons != null && coupons.length > 4" (pageChange)="p = $event" style="text-align: center"></pagination-controls>
+    </mat-tab>
 
-</mat-tab-group>
 
+
+    <mat-tab label="My Coupons">
+      <div *ngIf="purchasedCoupons == null" class="no-purchased-coupon">
+        You don't have any coupons
+      </div>
+      <div *ngFor="let coupon of purchasedCoupons | paginate: { itemsPerPage: 4, currentPage: pb }" class="coupons-table">
+        <table>
+          <tr>
+            <td class="coupon-logo">
+              <app-coupon-logo imageSource="{{coupon.image}}"></app-coupon-logo>
+            </td>
+            <td class="coupon-body">
+              <div class="coupon-header">
+                {{coupon.title}}
+              </div>
+              <div class="message">
+                "{{coupon.message}}"
+              </div>
+              <div style="text-align: center">
+                Ends:<span class="coupon-rows"> {{coupon.endDate}}</span>
+              </div>
+              <div style="text-align: center">
+                Price:<span class="coupon-rows"> {{coupon.price | currency}}</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <pagination-controls *ngIf="purchasedCoupons != null && purchasedCoupons.length > 4" (pageChange)="pb = $event" style="text-align: center"></pagination-controls>
+
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

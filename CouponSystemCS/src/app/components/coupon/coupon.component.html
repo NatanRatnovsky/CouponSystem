@@ -1,21 +1,20 @@
+
 <div>
-<!--  <mat-spinner *ngIf="!firstCoupon"></mat-spinner>-->
 <table  class="coupon" >
 
     <tr>
-      <td [colSpan]="3">Title: <span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >Coupon System by Natan</span></td>
+      <td [colSpan]="3"><span>Coupon System by Natan</span></td>
       <td class="logo" [colSpan]="2" [rowSpan]="2"><app-coupon-logo imageSource="assets/img/logo2.png"></app-coupon-logo> </td>
     </tr>
     <tr>
-      <td [colSpan]="3"><span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >"Don't wait! Try it!"</span></td>
+      <td [colSpan]="3"><span>"Don't wait! Try it!"</span></td>
 
     </tr>
     <tr>
-      <td [colSpan]="2">Today: <span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >{{time | date:'dd-MM-yy'}}</span><br/>
-        Time: <span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >{{time | date: 'HH:mm:ss'}}</span></td>
-      <td>Type: <span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >Market place</span></td>
-      <td>Price: <span style="color: purple; font-family: 'Arial Black',serif; font-style: italic" >Free</span></td>
-      <td><button mat-raised-button (click)="purchase()">Login</button></td>
+      <td [colSpan]="2">Today: <span>{{time | date:'dd-MM-yy'}}</span><br/>
+        Time: <span>{{time | date: 'HH:mm:ss'}}</span></td>
+      <td>Type: <span>Market place</span></td>
+      <td>Price: <span >Free</span></td>
     </tr>
 
   </table>
