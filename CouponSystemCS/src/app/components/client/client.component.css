@@ -1,0 +1,97 @@
+mat-toolbar {
+  height: 80px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.coupons-table {
+  align-self: center;
+  text-align: center;
+  width: 850px;
+  margin: 10px auto 10px auto;
+  border: solid grey;
+  border-radius: 1em;
+
+}
+
+.coupon-logo {
+  height: 160px;
+  width: 200px;
+  margin: auto;
+}
+
+.coupon-body {
+  height: 160px;
+  width: 450px;
+  padding: 0;
+}
+
+.coupon-header {
+  height: 20px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: Bitter;
+  font-weight: bold;
+  font-size: 24px;
+  color: dodgerblue;
+}
+
+.message {
+  text-align: center;
+  margin: 30px 10px 10px 10px;
+  font-family: Bitter;
+  font-weight: bold;
+  font-size: 18px;
+  color: dimgray;
+  padding: 0;
+}
+
+.coupon-rows {
+  margin: 10px;
+  text-align: right;
+  font-family: Bitter;
+  font-size: 20px;
+  color: dodgerblue;
+}
+
+.coupon-buy {
+  height: 160px;
+  width: 200px;
+  margin: auto;
+  font-family: Bitter;
+  font-size: 20px;
+  color: dodgerblue;
+  font-weight: bold;
+}
+
+.buy-bottom {
+  height: 40px;
+  margin: 10%;
+  border-radius: 5px;
+  text-align: center;
+  background-color: dodgerblue;
+  color: white;
+  padding: auto;
+}
+
+.buy {
+  margin: 15% 0 15% 20%;
+  text-align: center;
+  background-color: dimgray;
+  color: white;
+
+}
+mat-icon {
+  margin: 4px;
+}
+
+.no-purchased-coupon {
+  text-align: center;
+  font-family: Bitter;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+

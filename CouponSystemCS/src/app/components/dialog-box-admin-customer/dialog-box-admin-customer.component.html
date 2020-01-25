@@ -1,0 +1,51 @@
+<!-- dialog-box.component.html -->
+<h3 style="text-align: center; font-family: Bitter, Arial, serif;">{{action}} customer</h3>
+
+<mat-card>
+  <mat-card-content mat-dialog-content>
+    <form *ngIf="action == 'Update'" #updateCustomerForm="ngForm">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="{{action}} Name"  [(ngModel)]="customer.name" name="name" required>
+        </label>
+      </mat-form-field>
+      <mat-form-field>
+        <input placeholder="{{action}} Password" matInput [(ngModel)]="customer.password" name="password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input placeholder="{{action}} E-mail" matInput [(ngModel)]="customer.email" name="email" required>
+      </mat-form-field>
+      <div style="text-align: center">
+        <button *ngIf="action === 'Update'" mat-raised-button [disabled]="updateCustomerForm.invalid" (click)="updateCustomer(localData.id)" color="primary">{{action}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="closeDialog()"  color="warn">Cancel</button>
+      </div>
+    </form>
+    <div *ngIf="action == 'Delete'" style="text-align: center">
+      Sure to delete <b>{{customer.name}}</b>?
+      <br/>
+      <br/>
+      <button mat-raised-button (click)="deleteCustomer(localData.id)" color="primary">{{action}}</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button (click)="closeDialog()"  color="warn">Cancel</button>
+    </div>
+    <form *ngIf="action == 'Add'" #addCustomerForm="ngForm">
+      <mat-form-field>
+        <input matInput name="companyName" placeholder="Name" [(ngModel)]="customer.name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="password" placeholder="Password" [(ngModel)]="customer.password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="email" placeholder="E-mail" [(ngModel)]="customer.email" required>
+      </mat-form-field>
+      <div style="text-align: center">
+        <button *ngIf="action === 'Add'" mat-raised-button [disabled]="addCustomerForm.invalid" (click)="addCustomer()" color="primary">{{action}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="closeDialog()"  color="warn">Cancel</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+

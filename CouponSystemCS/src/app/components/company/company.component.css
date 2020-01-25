@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+mat-toolbar {
+  height: 80px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td{
+  width: 16%;
+}
+
+.mat-input {
+  font-size: 20px;
+}
+

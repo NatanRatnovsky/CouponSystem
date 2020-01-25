@@ -1,0 +1,126 @@
+<h3 color="primary" style="text-align: center; font-family: Bitter, Arial, serif;">{{action}} coupon
+</h3>
+<br/>
+<form *ngIf="action == 'Add'" #addCouponForm="ngForm">
+  <mat-card>
+    <div>
+      <form #addCouponForm="ngForm">
+        <mat-form-field>
+          <input matInput name="title" placeholder="Title" [(ngModel)]="coupon.title" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp1" placeholder="Start Date" [formControl]="date"
+                 [(ngModel)]="coupon.startDate"
+                 required>
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp2" placeholder="End Date" [formControl]="date" [(ngModel)]="coupon.endDate"
+                 required>
+          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+          <mat-datepicker #dp2></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput name="amount" type="number" placeholder="Amount" [(ngModel)]="coupon.amount" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Coupon Type</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="type">
+            <mat-option *ngFor="let couponsType of couponTypes" [value]="couponsType.value">
+              {{couponsType.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="message" placeholder="Message" [(ngModel)]="coupon.message" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="price" type="number" step=".1" placeholder="Price" [(ngModel)]="coupon.price" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="image" placeholder="Image URL" [(ngModel)]="coupon.image" required>
+          <mat-hint align="start"><strong>Like: https://cdn.vox-cdn.com/image/google2.0.0.jpg</strong></mat-hint>
+        </mat-form-field>
+        <br/>
+        <br/>
+        <div style="text-align: center">
+          <button mat-raised-button [disabled]="addCouponForm.invalid" (click)="addCouponFunc()"
+                  value="Add coupon" color="primary">Add Coupon
+          </button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</form>
+<form *ngIf="action == 'Delete'">
+  <mat-card>
+    <div style="text-align: center">
+      Sure to delete coupon <b>{{coupon.title}}</b>?</div>
+    <br/>
+    <br/>
+    <div style="text-align: center">
+      <button mat-raised-button (click)="deleteCoupon(coupon.id)" color="primary">{{action}}</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+    </div>
+  </mat-card>
+</form>
+
+<form *ngIf="action == 'Update'" #updateCouponForm="ngForm">
+  <mat-card>
+    <mat-form-field>
+      <input matInput name="title" placeholder="Title" [(ngModel)]="coupon.title" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp1" placeholder="Start Date" [formControl]="date" [(ngModel)]="coupon.startDate"
+             required>
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker #dp1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp2" placeholder="End Date" [formControl]="date" [(ngModel)]="coupon.endDate"
+             required>
+      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+      <mat-datepicker #dp2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput name="amount" type="number" placeholder="Amount" [(ngModel)]="coupon.amount"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Coupon Type</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="type">
+        <mat-option *ngFor="let couponsType of couponTypes" [value]="couponsType.value">
+          {{couponsType.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="message" placeholder="Message" [(ngModel)]="coupon.message" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="price" type="number" step=".1" placeholder="Price" [(ngModel)]="coupon.price" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="image" placeholder="Image URL" [(ngModel)]="coupon.image" required>
+      <mat-hint align="start"><strong>Like: https://cdn.vox-cdn.com/image/google2.0.0.jpg</strong></mat-hint>
+    </mat-form-field>
+    <br/>
+    <br/>
+    <br/>
+    <div style="text-align: center">
+      <button mat-raised-button [disabled]="updateCouponForm.invalid" (click)="updateCoupon(coupon.id)"
+              value="Add coupon" color="primary">Update
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+    </div>
+  </mat-card>
+</form>
+
+

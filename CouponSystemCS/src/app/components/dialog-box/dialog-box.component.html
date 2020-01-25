@@ -1,0 +1,57 @@
+<!-- dialog-box.component.html -->
+<h3 style="text-align: center; font-family: Bitter, Arial, serif;">{{action}} company</h3>
+
+<mat-card>
+  <mat-card-content mat-dialog-content>
+    <form *ngIf="action == 'Update'" #updateCompanyForm="ngForm">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="{{action}} Name" [(ngModel)]="company.name" name="name">
+        </label>
+      </mat-form-field>
+      <mat-form-field>
+        <input placeholder="{{action}} Password" matInput [(ngModel)]="company.password" name="password">
+      </mat-form-field>
+      <mat-form-field>
+        <input placeholder="{{action}} E-mail" matInput [(ngModel)]="company.email" name="email">
+      </mat-form-field>
+      <div style="text-align: center">
+        <button *ngIf="action === 'Update'" [disabled]="updateCompanyForm.invalid" mat-raised-button
+                (click)="updateCompany(localData.id)"
+                color="primary">{{action}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+      </div>
+    </form>
+    <div *ngIf="action == 'Delete'" style="text-align: center">
+      Sure to delete company <b>{{company.name}}</b>?
+      <br/>
+      <br/>
+      <div style="text-align: center">
+        <button *ngIf="action === 'Delete'" mat-raised-button (click)="deleteCompany(company.id)"
+                color="primary">{{action}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+      </div>
+    </div>
+    <form *ngIf="action == 'Add'" #addCompanyForm="ngForm">
+      <mat-form-field>
+        <input matInput name="companyName" placeholder="Name" [(ngModel)]="company.name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="password" placeholder="Password" [(ngModel)]="company.password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="email" placeholder="E-mail" [(ngModel)]="company.email" required>
+      </mat-form-field>
+      <div style="text-align: center">
+        <button *ngIf="action === 'Add'" [disabled]="addCompanyForm.invalid" mat-raised-button (click)="doAction()"
+                color="primary">{{action}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="closeDialog()" color="warn">Cancel</button>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>
+

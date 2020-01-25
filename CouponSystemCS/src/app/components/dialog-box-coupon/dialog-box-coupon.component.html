@@ -1,0 +1,33 @@
+<mat-spinner *ngIf="!coupon"></mat-spinner>
+<div *ngIf="action === 'Buy'" class="dialog-box-title">
+  Do you want to buy this coupon ?
+</div>
+
+  <div class="coupons-table">
+  <table>
+    <tr>
+      <td class="coupon-logo">
+        <app-coupon-logo imageSource="{{coupon.image}}"></app-coupon-logo>
+      </td>
+      <td class="coupon-body">
+        <div class="coupon-header">
+          {{coupon.title}}
+        </div>
+        <div class="message">
+          "{{coupon.message}}"
+        </div>
+        <div style="text-align: center">
+          Ends:<span class="coupon-rows"> {{coupon.endDate}}</span>
+        </div>
+        <div style="text-align: center">
+          Price:<span class="coupon-rows"> {{coupon.price | currency}}</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+  <div *ngIf="action === 'Buy'" class="dialog-box-buttons">
+    <button mat-raised-button color="primary" (click)="purchase(coupon)">Buy</button> &nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
+  </div>
