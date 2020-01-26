@@ -1,0 +1,14 @@
+package com.natran.CouponSystem.controller;
+
+import com.natran.CouponSystem.repos.UserRepos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class UserController {
+    @Autowired
+    UserRepos userRepos;
+
+
+
+}
